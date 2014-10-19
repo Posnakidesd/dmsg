@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.demetrisp.dmsg"
+    android:versionCode="1"
+    android:versionName="1.0">
+
+    <uses-sdk android:targetSdkVersion="20" />
+
+    <uses-permission android:name="android.permission.READ_SMS" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name="com.demetrisp.dmsg.MainActivity"
+            android:alwaysRetainTaskState="true"
+            android:label="@string/app_name"
+            android:launchMode="singleTop">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".Message_Box_Activity"
+            android:label="@string/import_message"
+            android:parentActivityName="com.demetrisp.dmsg.MainActivity">
+
+        <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value="com.demetrisp.dmsg.MainActivity"/>
+
+        </activity>
+
+        <activity
+            android:name="com.demetrisp.dmsg.Select_Message_Activity"
+            android:label="@string/import_message"
+            android:parentActivityName="com.demetrisp.dmsg.MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.demetrisp.dmsg.MainActivity"/>
+            </activity>
+    </application>
+
+</manifest>

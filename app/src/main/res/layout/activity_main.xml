@@ -1,0 +1,115 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#6F7275"
+    android:orientation="horizontal">
+
+    <LinearLayout
+        android:id="@+id/content"
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:layout_margin="8dip"
+        android:orientation="vertical"
+        android:layout_weight="1.0"
+       >
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/editText1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/edit_text_selector"
+                android:hint="Password"
+                android:inputType="textPassword"
+                android:maxLength="15"
+                android:maxLines="1"
+                android:password="true"
+                android:textColor="#ffffffff"
+                android:minWidth="140dp"
+                >
+
+            </EditText>
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="View"
+                android:id="@+id/checkBox"
+               />
+
+        </LinearLayout>
+
+        <EditText
+            android:id="@+id/editText2"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:layout_gravity="top"
+            android:layout_marginTop="6dp"
+
+            android:background="@drawable/edit_text_selector"
+            android:gravity="top|start"
+            android:hint="Message"
+            android:inputType="textMultiLine"
+            android:minHeight="80dip"
+            android:scrollHorizontally="true"
+            android:scrollbars="vertical"
+            android:textAlignment="gravity"
+            android:textColor="#ffffffff"
+
+
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/actionBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#6F7275"
+        android:orientation="vertical"
+        android:layout_marginLeft="0dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="8dp"
+        android:layout_gravity="bottom">
+
+
+        <Button
+            android:id="@+id/bImportSms"
+            android:layout_width="70dip"
+            android:layout_height="46dip"
+
+            android:layout_gravity="top"
+            android:background="@drawable/button_import_selector"
+            android:layout_marginBottom="8dp" />
+
+        <Button
+            android:id="@+id/bEncrypt"
+            android:layout_width="70dip"
+            android:layout_height="46dip"
+
+            android:background="@drawable/button_encrypt_selector"
+            android:layout_marginBottom="8dp" />
+
+        <Button
+            android:id="@+id/bDecrypt"
+            android:layout_width="70dip"
+            android:layout_height="46dip"
+
+            android:background="@drawable/button_decrypt_selector"
+            android:layout_marginBottom="8dp" />
+
+
+        <Button
+            android:id="@+id/bExportSms"
+            android:layout_width="70dip"
+            android:layout_height="46dip"
+
+            android:background="@drawable/button_export_selector" />
+
+
+    </LinearLayout>
+</LinearLayout>
