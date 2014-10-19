@@ -10,8 +10,7 @@
         android:layout_height="fill_parent"
         android:layout_margin="8dip"
         android:orientation="vertical"
-        android:layout_weight="1.0"
-       >
+        android:layout_weight="1.0">
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -29,16 +28,15 @@
                 android:maxLines="1"
                 android:password="true"
                 android:textColor="#ffffffff"
-                android:minWidth="140dp"
-                >
+                android:minWidth="140dp">
 
             </EditText>
+
             <CheckBox
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="View"
-                android:id="@+id/checkBox"
-               />
+                android:id="@+id/checkBox" />
 
         </LinearLayout>
 

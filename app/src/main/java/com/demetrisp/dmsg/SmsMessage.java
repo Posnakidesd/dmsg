@@ -15,7 +15,7 @@ import java.io.InputStream;
 
 
 /**
- * Created by dima on 8/12/14.
+ * Created by Posnakides Demetris on 8/12/14.
  */
 public class SmsMessage {
     String senderName;
@@ -71,7 +71,7 @@ public class SmsMessage {
             } catch (NullPointerException e) {
                 //e.printStackTrace();
             } catch (IllegalArgumentException e) {
-               // e.printStackTrace();
+                // e.printStackTrace();
             } catch (IOException e) {
                 //e.printStackTrace();
             }

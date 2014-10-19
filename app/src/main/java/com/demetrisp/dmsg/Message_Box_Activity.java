@@ -19,7 +19,6 @@ import java.util.ArrayList;
 public class Message_Box_Activity extends ActionBarActivity {
 
 
-
     ListView lvMsg;
 
     @Override

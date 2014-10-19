@@ -30,9 +30,9 @@
             android:label="@string/import_message"
             android:parentActivityName="com.demetrisp.dmsg.MainActivity">
 
-        <meta-data
-            android:name="android.support.PARENT_ACTIVITY"
-            android:value="com.demetrisp.dmsg.MainActivity"/>
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.demetrisp.dmsg.MainActivity" />
 
         </activity>
 
@@ -42,8 +42,8 @@
             android:parentActivityName="com.demetrisp.dmsg.MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.demetrisp.dmsg.MainActivity"/>
-            </activity>
+                android:value="com.demetrisp.dmsg.MainActivity" />
+        </activity>
     </application>
 
 </manifest>

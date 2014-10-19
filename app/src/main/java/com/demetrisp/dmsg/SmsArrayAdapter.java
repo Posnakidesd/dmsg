@@ -31,18 +31,16 @@ public class SmsArrayAdapter extends ArrayAdapter<SmsMessage> {
         TextView tvName = (TextView) rowView.findViewById(R.id.tvName);
         TextView tvbody = (TextView) rowView.findViewById(R.id.tvBody);
         ImageView contactIcon = (ImageView) rowView.findViewById(R.id.contactIcon);
-        if(smsList.get(position).senderName!=null)
-        tvName.setText(smsList.get(position).senderName);
+        if (smsList.get(position).senderName != null)
+            tvName.setText(smsList.get(position).senderName);
         else tvName.setText(smsList.get(position).senderNumber);
         tvbody.setText(smsList.get(position).body);
-        if(smsList.get(position).image_uri!=null) {
+        if (smsList.get(position).image_uri != null) {
             contactIcon.setImageURI(Uri.parse(smsList.get(position).image_uri));
-        }
-        else if(smsList.get(position).photo!=null){
+        } else if (smsList.get(position).photo != null) {
             contactIcon.setImageBitmap(smsList.get(position).photo);
-        }
-        else contactIcon.setImageResource(R.drawable.defaultcontact);
-        return  rowView;
+        } else contactIcon.setImageResource(R.drawable.defaultcontact);
+        return rowView;
 
     }
 }
