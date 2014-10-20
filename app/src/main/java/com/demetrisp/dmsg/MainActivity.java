@@ -127,7 +127,7 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
         if (v.getId() == R.id.bExportSms) {
             enc.setEnabled(true);
             dec.setEnabled(true);
-            Intent smsIntent = new Intent(Intent.ACTION_VIEW);
+            Intent smsIntent = new Intent(Intent.ACTION_SEND);
             smsIntent.setType("vnd.android-dir/mms-sms");
             smsIntent.putExtra("address", "");
             smsIntent.putExtra("sms_body", inputText.getText().toString());
