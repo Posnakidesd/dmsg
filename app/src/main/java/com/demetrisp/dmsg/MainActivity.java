@@ -16,6 +16,8 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import org.apache.http.protocol.HTTP;
+
 public class MainActivity extends ActionBarActivity implements OnClickListener {
 
     Button enc;
@@ -127,11 +129,25 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
         if (v.getId() == R.id.bExportSms) {
             enc.setEnabled(true);
             dec.setEnabled(true);
-            Intent smsIntent = new Intent(Intent.ACTION_VIEW);
-            smsIntent.setType("vnd.android-dir/mms-sms");
-            smsIntent.putExtra("address", "");
+            Intent smsIntent = new Intent(Intent.ACTION_SEND);
+            smsIntent.setType(HTTP.PLAIN_TEXT_TYPE);
             smsIntent.putExtra("sms_body", inputText.getText().toString());
-            startActivity(smsIntent);
+            smsIntent.putExtra(Intent.EXTRA_TEXT, inputText.getText().toString());
+
+
+            // Always use string resources for UI text.
+            // This says something like "Share this photo with"
+            String title = getResources().getString(R.string.chooser_title);
+            // Create intent to show chooser
+            Intent chooser = Intent.createChooser(smsIntent, title);
+
+            // Verify the intent will resolve to at least one activity
+
+
+            if (smsIntent.resolveActivity(getPackageManager()) != null) {
+                startActivity(chooser);
+            }
+
         }
         if (v.getId() == R.id.bImportSms) {
             enc.setEnabled(true);
