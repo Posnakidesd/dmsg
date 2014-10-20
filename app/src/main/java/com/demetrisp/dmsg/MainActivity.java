@@ -2,14 +2,10 @@ package com.demetrisp.dmsg;
 
 import android.content.Intent;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
-import android.provider.Telephony;
 import android.support.v7.app.ActionBarActivity;
-import android.telephony.SmsManager;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -20,6 +16,8 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import org.apache.http.protocol.HTTP;
 
 public class MainActivity extends ActionBarActivity implements OnClickListener {
 
@@ -133,33 +131,14 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
             enc.setEnabled(true);
             dec.setEnabled(true);
 
-
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT){
-                String defaultSmsPackageName = Telephony.Sms.getDefaultSmsPackage(MainActivity.this);
-                Intent smsIntent = new Intent(Intent.ACTION_SENDTO, Uri.parse("smsto:"));
-                smsIntent.putExtra("sms_body", inputText.getText().toString());
-                if (defaultSmsPackageName != null) {
-                    smsIntent.setPackage(defaultSmsPackageName);
-                    Log.d("message",defaultSmsPackageName);
-                    Log.d("message",String.valueOf(Build.VERSION.SDK_INT));
-
-                }
-                startActivity(smsIntent);
-            }
-            else {
-                Intent smsIntent = new Intent(Intent.ACTION_VIEW);
-                smsIntent.putExtra("sms_body", inputText.getText().toString());
-                smsIntent.setType("vnd.android-dir/mms-sms");
-                startActivity(smsIntent);
-
+            Intent intent = new Intent(Intent.ACTION_SEND);
+            intent.setData(Uri.parse("smsto:"));  // This ensures only SMS apps respond
+            // intent.setType(HTTP.PLAIN_TEXT_TYPE);
+            intent.putExtra("sms_body", inputText.getText().toString());
+            if (intent.resolveActivity(getPackageManager()) != null) {
+                startActivity(intent);
             }
 
-
-//            Intent smsIntent = new Intent(Intent.ACTION_SEND);
-//            smsIntent.setType("text/plain");
-//            //smsIntent.setType("vnd.android-dir/mms-sms");
-//            smsIntent.putExtra("sms_body", inputText.getText().toString());
-//            startActivity(smsIntent);
         }
         if (v.getId() == R.id.bImportSms) {
             enc.setEnabled(true);
