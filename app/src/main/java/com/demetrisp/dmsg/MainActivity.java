@@ -131,12 +131,20 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
             enc.setEnabled(true);
             dec.setEnabled(true);
 
-            Intent intent = new Intent(Intent.ACTION_SEND);
-            intent.setData(Uri.parse("smsto:"));  // This ensures only SMS apps respond
-            // intent.setType(HTTP.PLAIN_TEXT_TYPE);
-            intent.putExtra("sms_body", inputText.getText().toString());
-            if (intent.resolveActivity(getPackageManager()) != null) {
-                startActivity(intent);
+            Intent smsIntent = new Intent(Intent.ACTION_SEND);
+            //intent.setData(Uri.parse("smsto:"));  // This ensures only SMS apps respond
+            smsIntent.setType(HTTP.PLAIN_TEXT_TYPE);
+            smsIntent.putExtra("sms_body", inputText.getText().toString());
+            smsIntent.putExtra(Intent.EXTRA_TEXT, inputText.getText().toString());
+
+            // Always use string resources for UI text.
+            // This says something like "Share this photo with"
+            String title = getResources().getString(R.string.chooser_title);
+            // Create intent to show chooser
+            Intent chooser = Intent.createChooser(smsIntent, title);
+
+            if (smsIntent.resolveActivity(getPackageManager()) != null) {
+                startActivity(chooser);
             }
 
         }
