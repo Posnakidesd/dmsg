@@ -6,6 +6,8 @@
 
     <uses-sdk android:targetSdkVersion="20" />
 
+    <uses-feature android:name="android.hardware.telephony" android:required="false"/>
+
     <uses-permission android:name="android.permission.READ_SMS" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
 

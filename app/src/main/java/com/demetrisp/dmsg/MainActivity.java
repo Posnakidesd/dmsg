@@ -1,6 +1,7 @@
 package com.demetrisp.dmsg;
 
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -58,6 +59,13 @@ public class MainActivity extends ActionBarActivity implements OnClickListener {
         exportSms.setOnClickListener(this);
         inputText = (EditText) findViewById(R.id.editText2);
         keyText = (EditText) findViewById(R.id.editText1);
+
+
+        PackageManager pm = this.getPackageManager();
+
+        if (!pm.hasSystemFeature(PackageManager.FEATURE_TELEPHONY)) {
+            importSms.setEnabled(false);
+        }
 
 
     }
