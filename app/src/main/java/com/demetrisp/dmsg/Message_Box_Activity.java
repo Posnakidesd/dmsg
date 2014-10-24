@@ -1,14 +1,13 @@
 package com.demetrisp.dmsg;
 
 
+import android.app.ActionBar;
+import android.app.Activity;
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v4.app.NavUtils;
-import android.support.v7.app.ActionBarActivity;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -16,37 +15,21 @@ import android.widget.ListView;
 
 import java.util.ArrayList;
 
-public class Message_Box_Activity extends ActionBarActivity {
+public class Message_Box_Activity extends Activity {
 
 
     ListView lvMsg;
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                NavUtils.navigateUpFromSameTask(this);
-                return true;
-        }
-        return super.onOptionsItemSelected(item);
-
-    }
-
-    // Cursor Adapter
     SmsArrayAdapter adapter;
     Intent intent;
 
-    /**
-     * Called when the activity is first created.
-     */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
 
         setContentView(R.layout.activity_sms);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        ActionBar actionBar =  getActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
 
         //getActionBar().setDisplayHomeAsUpEnabled(true);
         intent = new Intent(Message_Box_Activity.this, Select_Message_Activity.class);

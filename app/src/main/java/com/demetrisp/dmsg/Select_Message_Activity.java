@@ -1,11 +1,11 @@
 package com.demetrisp.dmsg;
 
+import android.app.Activity;
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -13,7 +13,7 @@ import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 
-public class Select_Message_Activity extends ActionBarActivity {
+public class Select_Message_Activity extends Activity {
 
     //  GUI Widget
     ListView lvMsg;
@@ -25,8 +25,7 @@ public class Select_Message_Activity extends ActionBarActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.select_msg);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
+        getActionBar().setDisplayHomeAsUpEnabled(true);
 
         lvMsg = (ListView) findViewById(R.id.sms_list);
         Uri inboxURI = Uri.parse("content://sms");
@@ -38,7 +37,7 @@ public class Select_Message_Activity extends ActionBarActivity {
         Cursor c = cr.query(inboxURI, reqCols, sms, null, null);
         adapter = new SimpleCursorAdapter(Select_Message_Activity.this, android.R.layout.simple_list_item_1, c,
                 new String[]{"body"}, new int[]{
-                android.R.id.text1});
+                android.R.id.text1},0);
         lvMsg.setAdapter(adapter);
         lvMsg.setOnItemClickListener(new OnItemClickListener() {
 
