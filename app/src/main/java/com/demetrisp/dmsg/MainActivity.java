@@ -2,10 +2,14 @@ package com.demetrisp.dmsg;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -25,12 +29,22 @@ public class MainActivity extends Activity implements OnClickListener {
     EditText inputText;
     EditText keyText;
     CheckBox checkBox;
+    boolean import_preference;
+    boolean export_as_sms;
+    static final int GET_SMS_BODY = 1;  // The request code
 
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        loadPreferences();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        loadPreferences();
 
         checkBox = (CheckBox) findViewById(R.id.checkBox);
         checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -104,11 +118,14 @@ public class MainActivity extends Activity implements OnClickListener {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == RESULT_OK) {
-            if (data.getExtras().containsKey("smsBody")) {
-                inputText.setText(data.getStringExtra("smsBody"));
+        if (requestCode == GET_SMS_BODY) {
+            if (resultCode == RESULT_OK) {
+                if (data.getExtras().containsKey("smsBody")) {
+                    inputText.setText(data.getStringExtra("smsBody"));
+                }
             }
         }
+
     }
 
     @Override
@@ -140,23 +157,21 @@ public class MainActivity extends Activity implements OnClickListener {
         if (v.getId() == R.id.bExportSms) {
             enc.setEnabled(true);
             dec.setEnabled(true);
-            Intent smsIntent = new Intent(Intent.ACTION_SEND);
-            smsIntent.setType("text/plain");
-            smsIntent.putExtra(Intent.EXTRA_TEXT, inputText.getText().toString());
-            String title = getResources().getString(R.string.chooser_title);
-            Intent chooser = Intent.createChooser(smsIntent, title);
-
-            // Verify the intent will resolve to at least one activity
-            if (smsIntent.resolveActivity(getPackageManager()) != null) {
-                startActivity(chooser);
+            if (export_as_sms) {
+                composeSmsMessage(inputText.getText().toString());
+                Log.d("message", "Export as sms");
+            } else {
+                composeTextMessage(inputText.getText().toString());
+                Log.d("message", "Export as text");
             }
+
 
         }
         if (v.getId() == R.id.bImportSms) {
             enc.setEnabled(true);
             dec.setEnabled(true);
             Intent intent = new Intent(MainActivity.this, Message_Box_Activity.class);
-            startActivityForResult(intent, 1);
+            startActivityForResult(intent, GET_SMS_BODY);
         }
 
         if (v.getId() == R.id.bDecrypt) {
@@ -187,6 +202,39 @@ public class MainActivity extends Activity implements OnClickListener {
         }
 
 
+    }
+
+    private void loadPreferences() {
+        SharedPreferences mySharedPreferences = PreferenceManager.getDefaultSharedPreferences(this);
+
+        import_preference = mySharedPreferences.getBoolean("pref_import_sms", false);
+        export_as_sms = mySharedPreferences.getBoolean("pref_export_sms", false);
+
+
+    }
+
+    public void composeTextMessage(String message) {
+        Intent smsIntent = new Intent(Intent.ACTION_SEND);
+        smsIntent.setType("text/plain");
+        smsIntent.putExtra(Intent.EXTRA_TEXT, message);
+        String title = getResources().getString(R.string.chooser_title);
+        Intent chooser = Intent.createChooser(smsIntent, title);
+
+        // Verify the intent will resolve to at least one activity
+        if (smsIntent.resolveActivity(getPackageManager()) != null) {
+            startActivity(chooser);
+        }
+    }
+
+    public void composeSmsMessage(String message) {
+        Intent smsIntent = new Intent(Intent.ACTION_SENDTO);
+        smsIntent.setData(Uri.parse("smsto:"));  // This ensures only SMS apps respond
+        smsIntent.putExtra("sms_body", message);
+        String title = getResources().getString(R.string.chooser_title);
+        Intent chooser = Intent.createChooser(smsIntent, title);
+        if (smsIntent.resolveActivity(getPackageManager()) != null) {
+            startActivity(chooser);
+        }
     }
 
 }

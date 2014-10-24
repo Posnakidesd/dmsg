@@ -1,9 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
-    <CheckBoxPreference
-        android:key="pref_export_sms"
-        android:title="@string/pref_export_sms"
-        android:summary="@string/pref_export_sms_summ"
-        android:defaultValue="false" />
+    <PreferenceCategory android:title="Export Options">
+        <CheckBoxPreference
+            android:defaultValue="false"
+            android:key="pref_export_sms"
+            android:summary="@string/pref_export_sms_summ"
+            android:title="@string/pref_export_sms" />
+    </PreferenceCategory>
+
+
+    <PreferenceCategory android:title="Import Options">
+
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="pref_import_sms"
+            android:summary="@string/pref_import_sms_summ"
+            android:title="@string/pref_import_sms" />
+
+    </PreferenceCategory>
 
 </PreferenceScreen>

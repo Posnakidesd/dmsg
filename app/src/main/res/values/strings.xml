@@ -8,6 +8,8 @@
     <string name="action_preferences">Settings</string>
     <string name="pref_export_sms">Export SMS</string>
     <string name="pref_export_sms_summ">Export the message to SMS application</string>
+    <string name="pref_import_sms">Import SMS</string>
+    <string name="pref_import_sms_summ">Import only from SMS Database</string>
 
 
 </resources>
