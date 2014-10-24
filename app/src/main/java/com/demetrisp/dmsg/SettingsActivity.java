@@ -2,8 +2,6 @@ package com.demetrisp.dmsg;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.preference.PreferenceActivity;
-import android.preference.PreferenceFragment;
 
 /**
  * Created by dima on 10/24/14.
