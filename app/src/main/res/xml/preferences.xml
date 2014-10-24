@@ -2,6 +2,7 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
     <PreferenceCategory android:title="Export Options">
         <CheckBoxPreference
+            android:id="@+id/cbExportSms"
             android:defaultValue="false"
             android:key="pref_export_sms"
             android:summary="@string/pref_export_sms_summ"
@@ -12,7 +13,8 @@
     <PreferenceCategory android:title="Import Options">
 
         <CheckBoxPreference
-            android:defaultValue="true"
+            android:id="@+id/cbImportSms"
+            android:defaultValue="false"
             android:key="pref_import_sms"
             android:summary="@string/pref_import_sms_summ"
             android:title="@string/pref_import_sms" />

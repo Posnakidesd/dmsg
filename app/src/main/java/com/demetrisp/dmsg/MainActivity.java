@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.preference.CheckBoxPreference;
 import android.preference.PreferenceManager;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
@@ -209,7 +210,6 @@ public class MainActivity extends Activity implements OnClickListener {
 
         import_preference = mySharedPreferences.getBoolean("pref_import_sms", false);
         export_as_sms = mySharedPreferences.getBoolean("pref_export_sms", false);
-
 
     }
 
