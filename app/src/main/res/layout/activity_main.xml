@@ -62,52 +62,65 @@
 
     </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/actionBar"
+
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="#6F7275"
         android:orientation="vertical"
-        android:layout_marginLeft="0dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="8dp"
+        android:paddingLeft="0dp"
+        android:paddingTop="8dp"
+        android:paddingRight="8dp"
+        android:paddingBottom="8dp"
         android:layout_gravity="bottom">
 
-
-        <Button
-            android:id="@+id/bImportSms"
-            android:layout_width="70dip"
-            android:layout_height="46dip"
-
-            android:layout_gravity="top"
-            android:background="@drawable/button_import_selector"
-            android:layout_marginBottom="8dp" />
-
-        <Button
-            android:id="@+id/bEncrypt"
-            android:layout_width="70dip"
-            android:layout_height="46dip"
-
-            android:background="@drawable/button_encrypt_selector"
-            android:layout_marginBottom="8dp" />
-
-        <Button
-            android:id="@+id/bDecrypt"
-            android:layout_width="70dip"
-            android:layout_height="46dip"
-
-            android:background="@drawable/button_decrypt_selector"
-            android:layout_marginBottom="8dp" />
+        <LinearLayout
+            android:id="@+id/actionBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#6F7275"
+            android:orientation="vertical">
 
 
-        <Button
-            android:id="@+id/bExportSms"
-            android:layout_width="70dip"
-            android:layout_height="46dip"
+            <Button
+                android:id="@+id/bImportSms"
+                android:layout_width="70dip"
+                android:layout_height="46dip"
 
-            android:background="@drawable/button_export_selector" />
+                android:layout_gravity="top"
+                android:background="@drawable/button_import_selector"
+                android:layout_marginBottom="8dp" />
+
+            <Button
+                android:id="@+id/bEncrypt"
+                android:layout_width="70dip"
+                android:layout_height="46dip"
+
+                android:background="@drawable/button_encrypt_selector"
+                android:layout_marginBottom="8dp" />
+
+            <Button
+                android:id="@+id/bDecrypt"
+                android:layout_width="70dip"
+                android:layout_height="46dip"
+
+                android:background="@drawable/button_decrypt_selector"
+                android:layout_marginBottom="8dp" />
 
 
-    </LinearLayout>
+            <Button
+                android:id="@+id/bExportSms"
+                android:layout_width="70dip"
+                android:layout_height="46dip"
+
+                android:background="@drawable/button_export_selector" />
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+
 </LinearLayout>

@@ -3,11 +3,15 @@ package com.demetrisp.dmsg;
 
 import android.app.ActionBar;
 import android.app.Activity;
+import android.app.LoaderManager;
 import android.content.ContentResolver;
+import android.content.CursorLoader;
 import android.content.Intent;
+import android.content.Loader;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -15,20 +19,33 @@ import android.widget.ListView;
 
 import java.util.ArrayList;
 
-public class Message_Box_Activity extends Activity {
+public class Message_Box_Activity extends Activity implements LoaderManager.LoaderCallbacks<Cursor> {
 
 
     ListView lvMsg;
     SmsArrayAdapter adapter;
     Intent intent;
 
+    //Loader
+    private static final int SMS_THREADS_LOADER = 0;
+    Uri mDataUrl;
+    String[] mProjection;
+    String mSelection;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        //Loader
+
+        mDataUrl = Uri.parse("content://sms");
+        mProjection = new String[]{"_id", "address", "body", "thread_id"};
+        mSelection = "1=1 ) GROUP BY (thread_id";
+        getLoaderManager().initLoader(SMS_THREADS_LOADER, null, this);
+
 
         setContentView(R.layout.activity_sms);
-        ActionBar actionBar =  getActionBar();
+        ActionBar actionBar = getActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
 
         //getActionBar().setDisplayHomeAsUpEnabled(true);
@@ -45,22 +62,57 @@ public class Message_Box_Activity extends Activity {
                 Message_Box_Activity.this.finish();
             }
         });
-        Uri inboxURI = Uri.parse("content://sms");
-        String[] reqCols = new String[]{"_id", "address", "body", "thread_id"};
-        ContentResolver cr = getContentResolver();
-        Cursor c = cr.query(inboxURI, reqCols, "1=1 ) GROUP BY (thread_id", null, null);
+
+
+    }
+
+    @Override
+    public Loader<Cursor> onCreateLoader(int loaderID, Bundle args) {
+           /*
+     * Takes action based on the ID of the Loader that's being created
+     */
+        switch (loaderID) {
+            case SMS_THREADS_LOADER:
+                // Returns a new CursorLoader
+                Log.d("Loader","Inside Cursor Loader");
+                return new CursorLoader(
+                        this,   // Parent activity context
+                        mDataUrl,        // Table to query
+                        mProjection,     // Projection to return
+                        mSelection,      // Selection clause
+                        null,            // No selection arguments
+                        null             // Default sort order
+                );
+
+            default:
+                // An invalid id was passed in
+                return null;
+        }
+
+    }
+
+    @Override
+    public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
+        Log.d("Loader","Inside inside onLoadFinished");
         ArrayList<SmsMessage> smsList = new ArrayList<SmsMessage>();
-        c.moveToFirst();
-        while (!c.isAfterLast()) {
-            SmsMessage sms = new SmsMessage(c.getString(c.getColumnIndex("address")), c.getString(c.getColumnIndex("body")), c.getString(c.getColumnIndex("thread_id")), getApplicationContext());
+        data.moveToFirst();
+        while (!data.isAfterLast()) {
+            SmsMessage sms = new SmsMessage(data.getString(
+                    data.getColumnIndex("address")),
+                    data.getString(data.getColumnIndex("body")),
+                    data.getString(data.getColumnIndex("thread_id")),
+                    getApplicationContext());
 
             smsList.add(sms);
-            c.moveToNext();
+            data.moveToNext();
         }
-        c.close();
         adapter = new SmsArrayAdapter(getApplicationContext(), R.id.tvName, smsList);
 
         lvMsg.setAdapter(adapter);
+    }
 
+    @Override
+    public void onLoaderReset(Loader<Cursor> loader) {
+        lvMsg.setAdapter(null);
     }
 }

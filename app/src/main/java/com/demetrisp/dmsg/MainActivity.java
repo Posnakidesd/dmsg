@@ -74,11 +74,11 @@ public class MainActivity extends Activity implements OnClickListener {
         keyText = (EditText) findViewById(R.id.editText1);
 
 
-        PackageManager pm = this.getPackageManager();
-
-        if (!pm.hasSystemFeature(PackageManager.FEATURE_TELEPHONY)) {
-            importSms.setEnabled(false);
-        }
+//        PackageManager pm = this.getPackageManager();
+//
+//        if (!pm.hasSystemFeature(PackageManager.FEATURE_TELEPHONY)) {
+//            importSms.setEnabled(false);
+//        }
 
 
     }
