@@ -22,6 +22,8 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.demetrisp.dmsg.com.demetrisp.dmsg.filepicker.Filepicker;
+
 public class MainActivity extends Activity implements OnClickListener {
 
     Button enc;
@@ -100,6 +102,10 @@ public class MainActivity extends Activity implements OnClickListener {
             case R.id.action_preferences:
                 Intent i = new Intent(this, SettingsActivity.class);
                 startActivity(i);
+                return true;
+            case R.id.action_filepicker:
+                Intent browser = new Intent(this, Filepicker.class);
+                startActivity(browser);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

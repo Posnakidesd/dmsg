@@ -36,6 +36,11 @@ public class Message_Box_Activity extends Activity implements LoaderManager.Load
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+
+        setContentView(R.layout.activity_sms);
+        ActionBar actionBar = getActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
+
         //Loader
 
         mDataUrl = Uri.parse("content://sms");
@@ -44,9 +49,7 @@ public class Message_Box_Activity extends Activity implements LoaderManager.Load
         getLoaderManager().initLoader(SMS_THREADS_LOADER, null, this);
 
 
-        setContentView(R.layout.activity_sms);
-        ActionBar actionBar = getActionBar();
-        actionBar.setDisplayHomeAsUpEnabled(true);
+
 
         //getActionBar().setDisplayHomeAsUpEnabled(true);
         intent = new Intent(Message_Box_Activity.this, Select_Message_Activity.class);
@@ -74,7 +77,6 @@ public class Message_Box_Activity extends Activity implements LoaderManager.Load
         switch (loaderID) {
             case SMS_THREADS_LOADER:
                 // Returns a new CursorLoader
-                Log.d("Loader","Inside Cursor Loader");
                 return new CursorLoader(
                         this,   // Parent activity context
                         mDataUrl,        // Table to query
@@ -93,7 +95,6 @@ public class Message_Box_Activity extends Activity implements LoaderManager.Load
 
     @Override
     public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
-        Log.d("Loader","Inside inside onLoadFinished");
         ArrayList<SmsMessage> smsList = new ArrayList<SmsMessage>();
         data.moveToFirst();
         while (!data.isAfterLast()) {
