@@ -30,7 +30,7 @@ public class Filepicker extends ListActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.filepicker);
         myPath = (TextView) findViewById(R.id.path);
 
         if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
