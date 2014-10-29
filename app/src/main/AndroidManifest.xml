@@ -47,7 +47,7 @@
                 android:value="com.demetrisp.dmsg.MainActivity" />
         </activity>
         <activity android:name="com.demetrisp.dmsg.SettingsActivity"/>
-        <activity android:name=".com.demetrisp.dmsg.filepicker.Filepicker"/>
+        <activity android:name=".com.demetrisp.dmsg.browser.FileChooser"/>
     </application>
 
 </manifest>

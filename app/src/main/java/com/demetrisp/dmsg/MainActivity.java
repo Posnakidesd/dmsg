@@ -1,12 +1,11 @@
 package com.demetrisp.dmsg;
+import com.demetrisp.dmsg.com.demetrisp.dmsg.browser.FileChooser;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
-import android.preference.CheckBoxPreference;
 import android.preference.PreferenceManager;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
@@ -22,7 +21,8 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.demetrisp.dmsg.com.demetrisp.dmsg.filepicker.Filepicker;
+
+
 
 public class MainActivity extends Activity implements OnClickListener {
 
@@ -35,6 +35,7 @@ public class MainActivity extends Activity implements OnClickListener {
     boolean import_preference;
     boolean export_as_sms;
     static final int GET_SMS_BODY = 1;  // The request code
+    private static final int REQUEST_PATH = 2; //Browsing for file
 
 
     @Override
@@ -104,8 +105,8 @@ public class MainActivity extends Activity implements OnClickListener {
                 startActivity(i);
                 return true;
             case R.id.action_filepicker:
-                Intent browser = new Intent(this, Filepicker.class);
-                startActivity(browser);
+                Intent browser = new Intent(this, FileChooser.class);
+                startActivityForResult(browser,REQUEST_PATH);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -130,6 +131,13 @@ public class MainActivity extends Activity implements OnClickListener {
                 if (data.getExtras().containsKey("smsBody")) {
                     inputText.setText(data.getStringExtra("smsBody"));
                 }
+            }
+        }
+        if (requestCode == REQUEST_PATH){
+            if (resultCode == RESULT_OK) {
+
+//                curFileName = data.getStringExtra("GetFileName");
+//                edittext.setText(curFileName);
             }
         }
 
