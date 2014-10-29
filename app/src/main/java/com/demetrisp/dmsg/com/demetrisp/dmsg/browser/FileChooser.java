@@ -72,7 +72,6 @@ public class FileChooser extends ListActivity {
 
     @Override
     protected void onListItemClick(ListView l, View v, int position, long id) {
-        // TODO Auto-generated method stub
         super.onListItemClick(l, v, position, id);
         Item o = adapter.getItem(position);
         if (o.getImage().equalsIgnoreCase("directory_icon") || o.getImage().equalsIgnoreCase("directory_up")) {
@@ -86,8 +85,8 @@ public class FileChooser extends ListActivity {
     private void onFileClick(Item o) {
         //Toast.makeText(this, "Folder Clicked: "+ currentDir, Toast.LENGTH_SHORT).show();
         Intent intent = new Intent();
-        intent.putExtra("GetPath", currentDir.toString());
-        intent.putExtra("GetFileName", o.getName());
+        intent.putExtra("filePath", currentDir.toString());
+        intent.putExtra("fileName", o.getName());
         setResult(RESULT_OK, intent);
         finish();
     }

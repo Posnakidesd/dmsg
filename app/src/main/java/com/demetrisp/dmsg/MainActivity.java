@@ -35,7 +35,12 @@ public class MainActivity extends Activity implements OnClickListener {
     boolean import_preference;
     boolean export_as_sms;
     static final int GET_SMS_BODY = 1;  // The request code
+
+    //Browser
     private static final int REQUEST_PATH = 2; //Browsing for file
+    String fileName;
+    String filePath;
+
 
 
     @Override
@@ -136,8 +141,9 @@ public class MainActivity extends Activity implements OnClickListener {
         if (requestCode == REQUEST_PATH){
             if (resultCode == RESULT_OK) {
 
-//                curFileName = data.getStringExtra("GetFileName");
-//                edittext.setText(curFileName);
+                  fileName = data.getStringExtra("fileName");
+                filePath = data.getStringExtra("filePath");
+
             }
         }
 
