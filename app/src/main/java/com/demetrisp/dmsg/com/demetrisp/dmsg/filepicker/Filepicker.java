@@ -42,7 +42,13 @@ public class Filepicker extends ListActivity {
     }
 
     private void getDir(String dirPath) {
-        myPath.setText("Location: " + dirPath);
+
+       // File sdcard = Environment.getExternalStorageDirectory();
+
+
+
+
+        myPath.setText(dirPath);
         item = new ArrayList<String>();
         path = new ArrayList<String>();
         File f = new File(dirPath);
