@@ -54,8 +54,10 @@ public class FileChooser extends ListActivity {
                     //String formated = lastModDate.toString();
                     dir.add(new Item(ff.getName(), num_item, date_modify, ff.getAbsolutePath(), "directory_icon"));
                 } else {
-
-                    fls.add(new Item(ff.getName(), ff.length() + " Bytes", date_modify, ff.getAbsolutePath(), "file_icon"));
+                    String filePath = ff.getPath();
+                    if(filePath.endsWith(".txt")) {
+                        fls.add(new Item(ff.getName(), ff.length() + " Bytes", date_modify, ff.getAbsolutePath(), "file_icon"));
+                    }
                 }
             }
         } catch (Exception e) {

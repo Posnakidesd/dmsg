@@ -1,4 +1,5 @@
 package com.demetrisp.dmsg;
+
 import com.demetrisp.dmsg.com.demetrisp.dmsg.browser.FileChooser;
 
 import android.app.Activity;
@@ -21,7 +22,11 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Toast;
 
-
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 
 
 public class MainActivity extends Activity implements OnClickListener {
@@ -40,7 +45,6 @@ public class MainActivity extends Activity implements OnClickListener {
     private static final int REQUEST_PATH = 2; //Browsing for file
     String fileName;
     String filePath;
-
 
 
     @Override
@@ -111,7 +115,7 @@ public class MainActivity extends Activity implements OnClickListener {
                 return true;
             case R.id.action_filepicker:
                 Intent browser = new Intent(this, FileChooser.class);
-                startActivityForResult(browser,REQUEST_PATH);
+                startActivityForResult(browser, REQUEST_PATH);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -138,11 +142,31 @@ public class MainActivity extends Activity implements OnClickListener {
                 }
             }
         }
-        if (requestCode == REQUEST_PATH){
+        if (requestCode == REQUEST_PATH) {
             if (resultCode == RESULT_OK) {
 
-                  fileName = data.getStringExtra("fileName");
+                fileName = data.getStringExtra("fileName");
                 filePath = data.getStringExtra("filePath");
+
+                //Get the text file
+                File file = new File(filePath, fileName);
+
+                StringBuilder text = new StringBuilder();
+
+                try {
+                    BufferedReader br = new BufferedReader(new FileReader(file));
+                    String line;
+
+                    while ((line = br.readLine()) != null) {
+                        text.append(line);
+                        text.append('\n');
+                    }
+                    inputText.setText(text);
+                } catch (IOException e) {
+                    inputText.setText("Cannot Read File");
+                }
+
+
 
             }
         }
