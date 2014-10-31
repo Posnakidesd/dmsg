@@ -41,14 +41,17 @@ public class FileChooser extends ListActivity {
                 String date_modify = formater.format(lastModDate);
                 if (ff.isDirectory()) {
 
-
-                    File[] fbuf = ff.listFiles();
-                    int buf = 0;
-                    if (fbuf != null) {
-                        buf = fbuf.length;
-                    } else buf = 0;
-                    String num_item = String.valueOf(buf);
-                    if (buf == 0) num_item = num_item + " item";
+                    File[] folderItemsNumber = ff.listFiles();
+                    int counter = 0;
+                    if(folderItemsNumber != null){
+                       for(File item: folderItemsNumber){
+                           String extension = item.getPath();
+                           if(extension.endsWith(".txt")||item.isDirectory())
+                               counter++;
+                       }
+                    }
+                    String num_item = String.valueOf(counter);
+                    if (counter == 1) num_item = num_item + " item";
                     else num_item = num_item + " items";
 
                     //String formated = lastModDate.toString();
