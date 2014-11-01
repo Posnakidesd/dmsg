@@ -41,21 +41,26 @@ public class FileChooser extends ListActivity {
                 String date_modify = formater.format(lastModDate);
                 if (ff.isDirectory()) {
 
-
-                    File[] fbuf = ff.listFiles();
-                    int buf = 0;
-                    if (fbuf != null) {
-                        buf = fbuf.length;
-                    } else buf = 0;
-                    String num_item = String.valueOf(buf);
-                    if (buf == 0) num_item = num_item + " item";
+                    File[] folderItemsNumber = ff.listFiles();
+                    int counter = 0;
+                    if(folderItemsNumber != null){
+                       for(File item: folderItemsNumber){
+                           String extension = item.getPath();
+                           if(extension.endsWith(".txt")||item.isDirectory())
+                               counter++;
+                       }
+                    }
+                    String num_item = String.valueOf(counter);
+                    if (counter == 1) num_item = num_item + " item";
                     else num_item = num_item + " items";
 
                     //String formated = lastModDate.toString();
                     dir.add(new Item(ff.getName(), num_item, date_modify, ff.getAbsolutePath(), "directory_icon"));
                 } else {
-
-                    fls.add(new Item(ff.getName(), ff.length() + " Bytes", date_modify, ff.getAbsolutePath(), "file_icon"));
+                    String filePath = ff.getPath();
+                    if(filePath.endsWith(".txt")) {
+                        fls.add(new Item(ff.getName(), ff.length() + " Bytes", date_modify, ff.getAbsolutePath(), "file_icon"));
+                    }
                 }
             }
         } catch (Exception e) {

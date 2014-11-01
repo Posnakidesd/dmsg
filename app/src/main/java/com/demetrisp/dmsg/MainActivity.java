@@ -22,6 +22,12 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+
 
 public class MainActivity extends Activity implements OnClickListener {
 
@@ -141,7 +147,26 @@ public class MainActivity extends Activity implements OnClickListener {
 
                 fileName = data.getStringExtra("fileName");
                 filePath = data.getStringExtra("filePath");
-                inputText.setText(filePath + fileName);
+
+                //Get the text file
+                File file = new File(filePath, fileName);
+
+                StringBuilder text = new StringBuilder();
+
+                try {
+                    BufferedReader br = new BufferedReader(new FileReader(file));
+                    String line;
+
+                    while ((line = br.readLine()) != null) {
+                        text.append(line);
+                        text.append('\n');
+                    }
+                    inputText.setText(text);
+                } catch (IOException e) {
+                    inputText.setText("Cannot Read File");
+                }
+
+
 
             }
         }
