@@ -1,4 +1,5 @@
 package com.demetrisp.dmsg;
+
 import com.demetrisp.dmsg.com.demetrisp.dmsg.browser.FileChooser;
 
 import android.app.Activity;
@@ -22,8 +23,6 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 
-
-
 public class MainActivity extends Activity implements OnClickListener {
 
     Button enc;
@@ -40,7 +39,6 @@ public class MainActivity extends Activity implements OnClickListener {
     private static final int REQUEST_PATH = 2; //Browsing for file
     String fileName;
     String filePath;
-
 
 
     @Override
@@ -111,7 +109,7 @@ public class MainActivity extends Activity implements OnClickListener {
                 return true;
             case R.id.action_filepicker:
                 Intent browser = new Intent(this, FileChooser.class);
-                startActivityForResult(browser,REQUEST_PATH);
+                startActivityForResult(browser, REQUEST_PATH);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -138,11 +136,12 @@ public class MainActivity extends Activity implements OnClickListener {
                 }
             }
         }
-        if (requestCode == REQUEST_PATH){
+        if (requestCode == REQUEST_PATH) {
             if (resultCode == RESULT_OK) {
 
-                  fileName = data.getStringExtra("fileName");
+                fileName = data.getStringExtra("fileName");
                 filePath = data.getStringExtra("filePath");
+                inputText.setText(filePath + fileName);
 
             }
         }
