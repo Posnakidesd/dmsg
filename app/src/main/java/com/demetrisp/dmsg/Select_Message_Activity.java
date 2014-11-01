@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.content.Loader;
 import android.database.Cursor;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -31,7 +32,10 @@ public class Select_Message_Activity extends Activity implements LoaderManager.L
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.select_msg);
-        getActionBar().setDisplayHomeAsUpEnabled(true);
+
+        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+            getActionBar().setDisplayHomeAsUpEnabled(true);
+        }
 
         lvMsg = (ListView) findViewById(R.id.sms_list);
         inboxURI = Uri.parse("content://sms");

@@ -24,7 +24,6 @@ import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
@@ -165,7 +164,6 @@ public class MainActivity extends Activity implements OnClickListener {
                 } catch (IOException e) {
                     inputText.setText("Cannot Read File");
                 }
-
 
 
             }

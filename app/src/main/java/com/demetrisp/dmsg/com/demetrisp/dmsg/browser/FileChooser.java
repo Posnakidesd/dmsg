@@ -2,6 +2,7 @@ package com.demetrisp.dmsg.com.demetrisp.dmsg.browser;
 
 import android.app.ListActivity;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.view.View;
@@ -24,6 +25,11 @@ public class FileChooser extends ListActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        if (android.os.Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+            getActionBar().setDisplayHomeAsUpEnabled(true);
+        }
+
         currentDir = new File(Environment.getExternalStorageDirectory().getPath());
         fill(currentDir);
     }
@@ -64,6 +70,7 @@ public class FileChooser extends ListActivity {
                 }
             }
         } catch (Exception e) {
+
 
         }
         Collections.sort(dir);
