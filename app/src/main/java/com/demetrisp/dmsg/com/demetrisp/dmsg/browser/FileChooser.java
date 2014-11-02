@@ -62,7 +62,7 @@ public class FileChooser extends ListActivity {
                     else num_item = num_item + " items";
 
                     //String formated = lastModDate.toString();
-                    dir.add(new Item(ff.getName(), num_item, date_modify, ff.getAbsolutePath(), "directory_icon"));
+                    dir.add(new Item(ff.getName(), num_item, date_modify, ff.getAbsolutePath(), "folder_icon"));
                 } else {
                     String filePath = ff.getPath();
                     if(filePath.endsWith(".txt")) {
@@ -78,7 +78,7 @@ public class FileChooser extends ListActivity {
         Collections.sort(fls);
         dir.addAll(fls);
         if (!f.getAbsolutePath().equalsIgnoreCase(Environment.getExternalStorageDirectory().getAbsolutePath())) {
-            dir.add(0, new Item("..", "Parent Directory", "", f.getParent(), "directory_up"));
+            dir.add(0, new Item("..", "Go Back", "", f.getParent(), "back_icon"));
         }
 
         adapter = new FileArrayAdapter(FileChooser.this, R.layout.file_view, dir);
@@ -89,7 +89,7 @@ public class FileChooser extends ListActivity {
     protected void onListItemClick(ListView l, View v, int position, long id) {
         super.onListItemClick(l, v, position, id);
         Item o = adapter.getItem(position);
-        if (o.getImage().equalsIgnoreCase("directory_icon") || o.getImage().equalsIgnoreCase("directory_up")) {
+        if (o.getImage().equalsIgnoreCase("folder_icon") || o.getImage().equalsIgnoreCase("back_icon")) {
             currentDir = new File(o.getPath());
             fill(currentDir);
         } else {

@@ -38,7 +38,7 @@
 
         <activity
             android:name="com.demetrisp.dmsg.Select_Message_Activity"
-            android:label="@string/import_message"
+            android:label="@string/sms_import_screen"
             android:parentActivityName="com.demetrisp.dmsg.MainActivity">
         </activity>
 
