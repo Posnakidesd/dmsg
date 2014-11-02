@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
 
@@ -76,8 +77,10 @@ public class FileChooser extends ListActivity {
         Collections.sort(dir);
         Collections.sort(fls);
         dir.addAll(fls);
-        if (!f.getName().equalsIgnoreCase("sdcard"))
+        if (!f.getAbsolutePath().equalsIgnoreCase(Environment.getExternalStorageDirectory().getAbsolutePath())) {
             dir.add(0, new Item("..", "Parent Directory", "", f.getParent(), "directory_up"));
+        }
+
         adapter = new FileArrayAdapter(FileChooser.this, R.layout.file_view, dir);
         this.setListAdapter(adapter);
     }
