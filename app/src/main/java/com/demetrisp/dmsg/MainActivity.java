@@ -1,10 +1,15 @@
 package com.demetrisp.dmsg;
 
 import com.demetrisp.dmsg.com.demetrisp.dmsg.browser.FileChooser;
+import com.demetrisp.dmsg.com.demetrisp.dmsg.dialogs.SetPasswordDialog;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.DialogFragment;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -28,7 +33,7 @@ import java.io.FileReader;
 import java.io.IOException;
 
 
-public class MainActivity extends Activity implements OnClickListener {
+public class MainActivity extends Activity implements OnClickListener, SetPasswordDialog.SetPasswordDialogListener {
 
     Button enc;
     Button dec;
@@ -85,11 +90,13 @@ public class MainActivity extends Activity implements OnClickListener {
         keyText = (EditText) findViewById(R.id.editText1);
 
 
-//        PackageManager pm = this.getPackageManager();
-//
-//        if (!pm.hasSystemFeature(PackageManager.FEATURE_TELEPHONY)) {
-//            importSms.setEnabled(false);
-//        }
+        PackageManager pm = this.getPackageManager();
+
+        if (!pm.hasSystemFeature(PackageManager.FEATURE_TELEPHONY)) {
+            importSms.setEnabled(false);
+        }
+
+        showSetPasswordDialog();
 
 
     }
@@ -279,4 +286,14 @@ public class MainActivity extends Activity implements OnClickListener {
         }
     }
 
+    public void showSetPasswordDialog() {
+        DialogFragment newFragment = new SetPasswordDialog();
+        newFragment.show(getFragmentManager(), "password_dialog");
+    }
+
+    @Override
+    public void onDialogPositiveClick(String pass) {
+        keyText.setText(pass);
+
+    }
 }

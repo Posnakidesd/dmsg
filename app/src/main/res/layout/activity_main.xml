@@ -6,7 +6,7 @@
 
     <LinearLayout
         android:id="@+id/content"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="fill_parent"
         android:layout_margin="8dip"
         android:orientation="vertical"
@@ -26,7 +26,8 @@
                 android:inputType="textPassword"
                 android:maxLength="15"
                 android:maxLines="1"
-                android:password="true"
+
+
                 android:textColor="#ffffffff"
                 android:minWidth="140dp">
 
