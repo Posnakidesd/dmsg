@@ -87,6 +87,7 @@ public class MainActivity extends Activity implements OnClickListener, SetPasswo
         exportSms = (Button) findViewById(R.id.bExportSms);
         exportSms.setOnClickListener(this);
         inputText = (EditText) findViewById(R.id.editText2);
+        inputText.requestFocus();
         keyText = (EditText) findViewById(R.id.editText1);
 
 
@@ -288,6 +289,7 @@ public class MainActivity extends Activity implements OnClickListener, SetPasswo
 
     public void showSetPasswordDialog() {
         DialogFragment newFragment = new SetPasswordDialog();
+        newFragment.setCancelable(false);
         newFragment.show(getFragmentManager(), "password_dialog");
     }
 

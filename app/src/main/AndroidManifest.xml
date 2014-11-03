@@ -21,6 +21,7 @@
 
         <activity
             android:name="com.demetrisp.dmsg.MainActivity"
+            android:configChanges="orientation|screenSize"
             android:alwaysRetainTaskState="true"
             android:label="@string/app_name"
             android:launchMode="singleTop">
