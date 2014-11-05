@@ -1,127 +1,192 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:background="#6F7275"
-    android:orientation="horizontal">
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
-    <LinearLayout
-        android:id="@+id/content"
-        android:layout_width="0dp"
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/main_layout"
+        android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:layout_margin="8dip"
-        android:orientation="vertical"
-        android:layout_weight="1.0">
+        android:background="#6F7275"
+        android:orientation="horizontal">
 
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:id="@+id/content"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_margin="8dip"
+            android:layout_weight="1.0"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/editText1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/edit_text_selector"
+                    android:hint="Password"
+                    android:inputType="textPassword"
+                    android:maxLength="15"
+                    android:maxLines="1"
+
+
+                    android:minWidth="140dp"
+                    android:textColor="#ffffffff">
+
+                </EditText>
+
+                <CheckBox
+                    android:id="@+id/checkBox"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="View" />
+
+            </LinearLayout>
 
             <EditText
-                android:id="@+id/editText1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:id="@+id/editText2"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_gravity="top"
+                android:layout_marginTop="6dp"
+
                 android:background="@drawable/edit_text_selector"
-                android:hint="Password"
-                android:inputType="textPassword"
-                android:maxLength="15"
-                android:maxLines="1"
-
-
+                android:gravity="top|start"
+                android:hint="Message"
+                android:inputType="textMultiLine"
+                android:minHeight="80dip"
+                android:scrollHorizontally="true"
+                android:scrollbars="vertical"
+                android:textAlignment="gravity"
                 android:textColor="#ffffffff"
-                android:minWidth="140dp">
 
-            </EditText>
 
-            <CheckBox
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="View"
-                android:id="@+id/checkBox" />
+                />
 
         </LinearLayout>
 
-        <EditText
-            android:id="@+id/editText2"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:layout_gravity="top"
-            android:layout_marginTop="6dp"
 
-            android:background="@drawable/edit_text_selector"
-            android:gravity="top|start"
-            android:hint="Message"
-            android:inputType="textMultiLine"
-            android:minHeight="80dip"
-            android:scrollHorizontally="true"
-            android:scrollbars="vertical"
-            android:textAlignment="gravity"
-            android:textColor="#ffffffff"
+        <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:background="#6F7275"
+            android:orientation="vertical"
+            android:paddingBottom="8dp"
+            android:paddingLeft="0dp"
+            android:paddingRight="8dp"
+            android:paddingTop="8dp">
+
+            <LinearLayout
+                android:id="@+id/actionBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#6F7275"
+                android:orientation="vertical">
 
 
-            />
+                <Button
+                    android:id="@+id/bImportSms"
+                    android:layout_width="70dip"
+                    android:layout_height="46dip"
+
+                    android:layout_gravity="top"
+                    android:layout_marginBottom="8dp"
+                    android:background="@drawable/button_import_selector" />
+
+                <Button
+                    android:id="@+id/bEncrypt"
+                    android:layout_width="70dip"
+                    android:layout_height="46dip"
+
+                    android:layout_marginBottom="8dp"
+                    android:background="@drawable/button_encrypt_selector" />
+
+                <Button
+                    android:id="@+id/bDecrypt"
+                    android:layout_width="70dip"
+                    android:layout_height="46dip"
+
+                    android:layout_marginBottom="8dp"
+                    android:background="@drawable/button_decrypt_selector" />
+
+
+                <Button
+                    android:id="@+id/bExportSms"
+                    android:layout_width="70dip"
+                    android:layout_height="46dip"
+
+                    android:background="@drawable/button_export_selector" />
+
+
+            </LinearLayout>
+
+        </ScrollView>
+
 
     </LinearLayout>
 
+    <RelativeLayout
+        android:id="@+id/top_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#88666666">
 
-    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
 
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="#6F7275"
-        android:orientation="vertical"
-        android:paddingLeft="0dp"
-        android:paddingTop="8dp"
-        android:paddingRight="8dp"
-        android:paddingBottom="8dp"
-        android:layout_gravity="bottom">
 
-        <LinearLayout
-            android:id="@+id/actionBar"
+        <Button
+            android:layout_width="70dp"
+            android:layout_height="40dp"
+            android:text="Got it"
+            android:id="@+id/bclosehelp"
+            android:background="@android:color/holo_blue_light"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true" />
+
+        <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="#6F7275"
-            android:orientation="vertical">
+            android:id="@+id/editText"
+            android:layout_toEndOf="@+id/bclosehelp"
+            android:text="Send the message ->"
+            android:layout_alignBaseline="@+id/bclosehelp"
+            android:layout_alignBottom="@+id/bclosehelp"
+            android:layout_toRightOf="@+id/bclosehelp" />
 
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/editText3"
+            android:layout_marginBottom="22dp"
+            android:layout_toEndOf="@+id/bclosehelp"
+            android:text="Unlock message ->"
+            android:layout_above="@+id/bclosehelp"
+            android:layout_toRightOf="@+id/bclosehelp" />
 
-            <Button
-                android:id="@+id/bImportSms"
-                android:layout_width="70dip"
-                android:layout_height="46dip"
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/editText4"
+            android:layout_marginBottom="19dp"
+            android:text="Hide the message ->"
+            android:layout_above="@+id/editText3"
+            android:layout_alignRight="@+id/editText"
+            android:layout_alignEnd="@+id/editText" />
 
-                android:layout_gravity="top"
-                android:background="@drawable/button_import_selector"
-                android:layout_marginBottom="8dp" />
-
-            <Button
-                android:id="@+id/bEncrypt"
-                android:layout_width="70dip"
-                android:layout_height="46dip"
-
-                android:background="@drawable/button_encrypt_selector"
-                android:layout_marginBottom="8dp" />
-
-            <Button
-                android:id="@+id/bDecrypt"
-                android:layout_width="70dip"
-                android:layout_height="46dip"
-
-                android:background="@drawable/button_decrypt_selector"
-                android:layout_marginBottom="8dp" />
-
-
-            <Button
-                android:id="@+id/bExportSms"
-                android:layout_width="70dip"
-                android:layout_height="46dip"
-
-                android:background="@drawable/button_export_selector" />
-
-
-        </LinearLayout>
-
-    </ScrollView>
-
-
-
-</LinearLayout>
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/editText5"
+            android:layout_marginBottom="21dp"
+            android:text="Insert sms message ->"
+            android:layout_above="@+id/editText4"
+            android:layout_alignLeft="@+id/editText4"
+            android:layout_alignStart="@+id/editText4" />
+    </RelativeLayout>
+</FrameLayout>

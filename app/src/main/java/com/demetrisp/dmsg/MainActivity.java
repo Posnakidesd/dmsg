@@ -7,6 +7,7 @@ import com.demetrisp.dmsg.com.demetrisp.dmsg.dialogs.SetPasswordDialog;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.DialogFragment;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -22,6 +23,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
@@ -39,6 +42,7 @@ public class MainActivity extends Activity implements OnClickListener, SetPasswo
     Button enc;
     Button dec;
     Button exportSms, importSms;
+    Button close_help;
     EditText inputText;
     EditText keyText;
     CheckBox checkBox;
@@ -51,6 +55,9 @@ public class MainActivity extends Activity implements OnClickListener, SetPasswo
     String fileName;
     String filePath;
 
+    //help view
+    View helpView,mainView;
+
 
     @Override
     protected void onResume() {
@@ -62,7 +69,12 @@ public class MainActivity extends Activity implements OnClickListener, SetPasswo
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        helpView = findViewById(R.id.top_layout);
+        helpView.setVisibility(View.INVISIBLE);
+        mainView = findViewById(R.id.main_layout);
         loadPreferences();
+
+        this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
         checkBox = (CheckBox) findViewById(R.id.checkBox);
         checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -90,6 +102,10 @@ public class MainActivity extends Activity implements OnClickListener, SetPasswo
         inputText = (EditText) findViewById(R.id.editText2);
         inputText.requestFocus();
         keyText = (EditText) findViewById(R.id.editText1);
+        // help screen
+        close_help = (Button) findViewById(R.id.bclosehelp);
+        close_help.setOnClickListener(this);
+
 
 
         PackageManager pm = this.getPackageManager();
@@ -126,7 +142,15 @@ public class MainActivity extends Activity implements OnClickListener, SetPasswo
                 startActivityForResult(browser, REQUEST_PATH);
                 return true;
             case R.id.action_help:
-                showHelpDialog();
+
+
+                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(),InputMethodManager.HIDE_NOT_ALWAYS);
+                helpView.setVisibility(View.VISIBLE);
+
+
+
+                //showHelpDialog();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -260,6 +284,10 @@ public class MainActivity extends Activity implements OnClickListener, SetPasswo
                 toast.setGravity(Gravity.CENTER, 0, 0);
                 toast.show();
             }
+        }
+        if(v.getId() == R.id.bclosehelp){
+            helpView.setVisibility(View.INVISIBLE);
+            mainView.setVisibility(View.VISIBLE);
         }
 
 
