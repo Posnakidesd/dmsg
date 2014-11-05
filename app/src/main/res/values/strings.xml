@@ -13,6 +13,9 @@
     <string name="pref_import_sms_summ">Import only from SMS Database</string>
     <string name="action_filepicker">Import text file</string>
     <string name="file_icon">File or folder</string>
+    <string name="action_help">Help</string>
+    <string name="ok">OK</string>
+    <string name="help">Help</string>
 
 
 </resources>

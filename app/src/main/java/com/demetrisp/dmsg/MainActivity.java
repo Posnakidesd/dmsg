@@ -1,6 +1,7 @@
 package com.demetrisp.dmsg;
 
 import com.demetrisp.dmsg.com.demetrisp.dmsg.browser.FileChooser;
+import com.demetrisp.dmsg.com.demetrisp.dmsg.dialogs.HelpDialogFragment;
 import com.demetrisp.dmsg.com.demetrisp.dmsg.dialogs.SetPasswordDialog;
 
 import android.app.Activity;
@@ -124,9 +125,18 @@ public class MainActivity extends Activity implements OnClickListener, SetPasswo
                 Intent browser = new Intent(this, FileChooser.class);
                 startActivityForResult(browser, REQUEST_PATH);
                 return true;
+            case R.id.action_help:
+                showHelpDialog();
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
+
+    }
+
+    private void showHelpDialog() {
+        DialogFragment helpDialogFragment = new HelpDialogFragment();
+        helpDialogFragment.show(getFragmentManager(), "help_dialog");
 
     }
 
