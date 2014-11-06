@@ -21,6 +21,7 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.WindowManager;
@@ -107,6 +108,16 @@ public class MainActivity extends Activity implements OnClickListener, SetPasswo
         close_help.setOnClickListener(this);
 
 
+        //Close help view on touch anywhere
+        helpView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                helpView.setVisibility(View.INVISIBLE);
+                return false;
+            }
+        });
+
+
 
         PackageManager pm = this.getPackageManager();
 
@@ -148,9 +159,6 @@ public class MainActivity extends Activity implements OnClickListener, SetPasswo
                 imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(),InputMethodManager.HIDE_NOT_ALWAYS);
                 helpView.setVisibility(View.VISIBLE);
 
-
-
-                //showHelpDialog();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -158,11 +166,7 @@ public class MainActivity extends Activity implements OnClickListener, SetPasswo
 
     }
 
-    private void showHelpDialog() {
-        DialogFragment helpDialogFragment = new HelpDialogFragment();
-        helpDialogFragment.show(getFragmentManager(), "help_dialog");
 
-    }
 
     @Override
     protected void onSaveInstanceState(Bundle savedInstanceState) {
