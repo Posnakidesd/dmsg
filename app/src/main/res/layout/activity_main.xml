@@ -136,7 +136,8 @@
         android:id="@+id/top_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#88666666">
+        android:background="#95000000">
+
 
 
 
@@ -155,6 +156,7 @@
             android:id="@+id/editText"
             android:editable="false"
             android:layout_toEndOf="@+id/bclosehelp"
+            android:layout_toRightOf="@+id/bclosehelp"
             android:text="Send the message ----->"
             android:layout_below="@+id/editText3"
             android:layout_alignLeft="@+id/editText5"
@@ -166,6 +168,7 @@
             android:id="@+id/editText3"
             android:layout_marginBottom="40dp"
             android:layout_toEndOf="@+id/bclosehelp"
+            android:layout_toRightOf="@+id/bclosehelp"
             android:text="Unhide message -------->"
             android:layout_above="@+id/bclosehelp"
             android:layout_alignLeft="@+id/editText"
@@ -196,6 +199,7 @@
             android:text="1) Insert your password min 8 characters Long"
             android:id="@+id/textView3"
             android:layout_toStartOf="@+id/editText5"
+            android:layout_toLeftOf="@+id/editText5"
             android:layout_marginTop="107dp"
             android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"
