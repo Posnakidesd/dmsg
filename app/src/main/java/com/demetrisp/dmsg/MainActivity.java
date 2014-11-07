@@ -1,20 +1,15 @@
 package com.demetrisp.dmsg;
 
-import com.demetrisp.dmsg.com.demetrisp.dmsg.browser.FileChooser;
-import com.demetrisp.dmsg.com.demetrisp.dmsg.dialogs.HelpDialogFragment;
-import com.demetrisp.dmsg.com.demetrisp.dmsg.dialogs.SetPasswordDialog;
-
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.app.DialogFragment;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.annotation.NonNull;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
@@ -31,6 +26,11 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Toast;
+
+
+
+import com.demetrisp.dmsg.com.demetrisp.dmsg.browser.FileChooser;
+import com.demetrisp.dmsg.com.demetrisp.dmsg.dialogs.SetPasswordDialog;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -156,8 +156,11 @@ public class MainActivity extends Activity implements OnClickListener, SetPasswo
 
 
                 InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(),InputMethodManager.HIDE_NOT_ALWAYS);
-                helpView.setVisibility(View.VISIBLE);
+                View focus = getCurrentFocus();
+                if(focus!=null) {
+                    imm.hideSoftInputFromWindow(focus.getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
+                    helpView.setVisibility(View.VISIBLE);
+                }
 
                 return true;
             default:
@@ -169,7 +172,7 @@ public class MainActivity extends Activity implements OnClickListener, SetPasswo
 
 
     @Override
-    protected void onSaveInstanceState(Bundle savedInstanceState) {
+    protected void onSaveInstanceState(@NonNull Bundle savedInstanceState) {
 
         savedInstanceState.putString("key", keyText.toString());
         savedInstanceState.putString("input", inputText.toString());
@@ -321,7 +324,8 @@ public class MainActivity extends Activity implements OnClickListener, SetPasswo
     public void composeSmsMessage(String message) {
         Intent smsIntent = new Intent(Intent.ACTION_SENDTO);
         smsIntent.setData(Uri.parse("smsto:"));  // This ensures only SMS apps respond
-        smsIntent.putExtra(Intent.EXTRA_TEXT, message);
+        // try smsIntent.putExtra(Intent.EXTRA_TEXT, message);
+        smsIntent.putExtra("sms_body", message);
         String title = getResources().getString(R.string.chooser_title);
         Intent chooser = Intent.createChooser(smsIntent, title);
         if (smsIntent.resolveActivity(getPackageManager()) != null) {
