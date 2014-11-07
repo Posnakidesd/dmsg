@@ -169,7 +169,7 @@
             android:layout_marginBottom="40dp"
             android:layout_toEndOf="@+id/bclosehelp"
             android:layout_toRightOf="@+id/bclosehelp"
-            android:text="Unhide message -------->"
+            android:text="Unhide message ------>"
             android:layout_above="@+id/bclosehelp"
             android:layout_alignLeft="@+id/editText"
             android:layout_alignStart="@+id/editText" />
@@ -179,7 +179,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/editText4"
             android:layout_marginBottom="34dp"
-            android:text="Hide the message ------>"
+            android:text="Hide the message ----->"
             android:layout_above="@+id/editText3"
             android:layout_alignLeft="@+id/editText5"
             android:layout_alignStart="@+id/editText5" />
@@ -199,21 +199,19 @@
             android:text="1) Insert your password min 8 characters Long"
             android:id="@+id/textView3"
             android:layout_toStartOf="@+id/editText5"
-            android:layout_toLeftOf="@+id/editText5"
-            android:layout_marginTop="107dp"
+            android:layout_marginTop="85dp"
             android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_marginLeft="27dp"
+            android:layout_marginLeft="23dp"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="2) Write your message or optionally insert sms message or import text file from menu bar"
+            android:text="2) Write your message or optionally insert sms message or import text file from the menu bar"
             android:id="@+id/textView4"
-            android:layout_marginTop="29dp"
             android:layout_below="@+id/textView3"
             android:layout_alignLeft="@+id/textView3"
             android:layout_alignStart="@+id/textView3" />
@@ -225,8 +223,7 @@
             android:id="@+id/textView5"
             android:layout_below="@+id/textView4"
             android:layout_alignLeft="@+id/textView4"
-            android:layout_alignStart="@+id/textView4"
-            android:layout_marginTop="26dp" />
+            android:layout_alignStart="@+id/textView4" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -235,8 +232,7 @@
             android:id="@+id/textView6"
             android:layout_below="@+id/textView5"
             android:layout_alignLeft="@+id/textView5"
-            android:layout_alignStart="@+id/textView5"
-            android:layout_marginTop="29dp" />
+            android:layout_alignStart="@+id/textView5" />
 
     </RelativeLayout>
 </FrameLayout>
