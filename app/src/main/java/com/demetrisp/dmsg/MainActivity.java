@@ -317,7 +317,7 @@ public class MainActivity extends Activity implements OnClickListener, SetPasswo
     public void composeSmsMessage(String message) {
         Intent smsIntent = new Intent(Intent.ACTION_SENDTO);
         smsIntent.setData(Uri.parse("smsto:"));  // This ensures only SMS apps respond
-        smsIntent.putExtra("sms_body", message);
+        smsIntent.putExtra(Intent.EXTRA_TEXT, message);
         String title = getResources().getString(R.string.chooser_title);
         Intent chooser = Intent.createChooser(smsIntent, title);
         if (smsIntent.resolveActivity(getPackageManager()) != null) {
