@@ -15,7 +15,7 @@
         <CheckBoxPreference
             android:id="@+id/cbImportSms"
             android:defaultValue="false"
-            android:editable="false"
+            android:enabled="false"
             android:key="pref_import_sms"
             android:summary="@string/pref_import_sms_summ"
             android:title="@string/pref_import_sms" />
